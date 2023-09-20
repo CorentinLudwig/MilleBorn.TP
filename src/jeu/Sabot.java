@@ -49,6 +49,8 @@ public class Sabot implements Iterable<Cartes> {
 
 	private class Iterateur implements Iterator<Cartes> {
 		private int indiceIterateur = 0;
+		private int nombreOperationsReference = nbCartes;
+
 		private boolean nextEffectue = false;
 
 		public boolean hasNext() {
@@ -66,12 +68,14 @@ public class Sabot implements Iterable<Cartes> {
 			}
 		}
 
+		@Override
 		public void remove() {
 			if (nextEffectue && nbCartes>1) {
 				for (int i = indiceIterateur - 1; i < nbCartes - 1; i++) {
 					tabCartes[i] = tabCartes[i + 1];
 
 				}
+				nbCartes--;
 			} else {
 				throw new IllegalStateException();
 			}
