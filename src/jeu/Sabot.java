@@ -1,5 +1,6 @@
 package jeu;
 
+import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -40,24 +41,30 @@ public class Sabot implements Iterable<Cartes> {
 			}
 		}
 	}
-
+	
 	@Override
 	public Iterator<Cartes> iterator() {
-		// TODO Auto-generated method stub
-		return null;
+		return new Iterateur();
 	}
+	
+	public Cartes piocher() {
+		Iterator<Cartes> ite = iterator();
+		Cartes c = ite.next();
+		ite.remove();
+		return c;
 
-	private class Iterateur implements Iterator<Cartes> {
+	class Iterateur implements Iterator<Cartes> {
 		private int indiceIterateur = 0;
 		private int nombreOperationsReference = nbCartes;
-
 		private boolean nextEffectue = false;
 
 		public boolean hasNext() {
+			verificationConcurrence();
 			return indiceIterateur < nbCartes;
 		}
 
 		public Cartes next() {
+			verificationConcurrence();
 			if (hasNext()) {
 				Cartes carte = tabCartes[indiceIterateur];
 				indiceIterateur++;
@@ -70,16 +77,27 @@ public class Sabot implements Iterable<Cartes> {
 
 		@Override
 		public void remove() {
+			verificationConcurrence();
 			if (nextEffectue && nbCartes>1) {
 				for (int i = indiceIterateur - 1; i < nbCartes - 1; i++) {
 					tabCartes[i] = tabCartes[i + 1];
 
 				}
 				nbCartes--;
+				nombreOperationsReference --;
 			} else {
 				throw new IllegalStateException();
+			}
+		}
+		
+		private void verificationConcurrence() {
+			if(nombreOperationsReference != nbCartes) {
+				throw new ConcurrentModificationException();
 			}
 		}
 	}
 
 }
+
+
+	}
