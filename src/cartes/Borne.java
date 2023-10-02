@@ -24,4 +24,14 @@ public class Borne extends Cartes {
 		str.append("km");
 		return str.toString();
 	}
+	
+	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Borne) {
+			Borne at = (Borne) obj;
+			return at.getKm() == this.getKm();
+		}
+		return false;
+	}
 }

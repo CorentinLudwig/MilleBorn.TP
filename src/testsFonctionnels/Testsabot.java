@@ -1,4 +1,4 @@
-package test;
+package testsFonctionnels;
 
 import java.util.Iterator;
 
@@ -9,7 +9,7 @@ import cartes.Parade;
 import cartes.Probleme.Type;
 import jeu.Sabot;
 
-public class Test {
+public class Testsabot {
 	
 	public static void main(String[] args) {
 		
@@ -21,10 +21,20 @@ public class Test {
 				);
 		
 		
-		Iterator<Cartes> ite = sab.iterator();
-		while(ite.hasNext()) {
-			System.out.println(sab.piocher());
+//		while(!sab.estVide()) {
+//			System.out.println(sab.piocher());
+//		}
+		
+		
+		
+		
+		for(Iterator<Cartes> ite = sab.iterator();ite.hasNext();) {
+			System.out.println(ite.next());
+			ite.remove();
 		}
+		
+		sab.ajouterCarte(new Botte(1, Type.ACCIDENT));
+		System.out.println(sab.piocher());
 	}
 
 }

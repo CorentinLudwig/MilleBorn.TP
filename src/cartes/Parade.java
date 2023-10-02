@@ -28,4 +28,12 @@ public class Parade extends Bataille {
 		
 	}
 	
+	@Override
+	public boolean equals(Object obj) {
+		if(obj instanceof Parade) {
+			Parade at = (Parade) obj;
+			return at.getType() == this.getType();
+		}
+		return false;
+	}
 }

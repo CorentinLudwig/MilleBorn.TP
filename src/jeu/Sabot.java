@@ -88,6 +88,7 @@ public class Sabot implements Iterable<Cartes> {
 				nbCartes--;
 				nombreOperations++;
 				nombreOperationsReference++;
+				indiceIterateur--;
 			} else {
 				throw new IllegalStateException();
 			}

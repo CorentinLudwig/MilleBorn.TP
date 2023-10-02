@@ -1,10 +1,12 @@
 package cartes;
 
+
 public abstract class Probleme extends Cartes {
 	public enum Type {
 		FEU, ESSENCE, CREVAISON, ACCIDENT;
 	}
 	private Type type;
+	
 	
 	
 	protected Probleme(int nombre, Type type) {
