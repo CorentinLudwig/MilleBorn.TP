@@ -52,12 +52,15 @@ public class Sabot implements Iterable<Cartes> {
 		Cartes c = ite.next();
 		ite.remove();
 		return c;
-
-	class Iterateur implements Iterator<Cartes> {
+	}
+	
+	
+		private class Iterateur implements Iterator<Cartes> {
 		private int indiceIterateur = 0;
 		private int nombreOperationsReference = nbCartes;
 		private boolean nextEffectue = false;
-
+		
+		
 		public boolean hasNext() {
 			verificationConcurrence();
 			return indiceIterateur < nbCartes;
@@ -96,8 +99,5 @@ public class Sabot implements Iterable<Cartes> {
 			}
 		}
 	}
-
 }
 
-
-	}
