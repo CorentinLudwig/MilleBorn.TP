@@ -4,15 +4,15 @@ import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-import cartes.Cartes;
+import cartes.Carte;
 
-public class Sabot implements Iterable<Cartes> {
-	private Cartes[] tabCartes;
+public class Sabot implements Iterable<Carte> {
+	private Carte[] tabCartes;
 	private int nbCartes = 0;
 	private int nombreOperations = 0;
 
 	public Sabot(int tailleSabot) {
-		tabCartes = new Cartes[tailleSabot];
+		tabCartes = new Carte[tailleSabot];
 	}
 
 	public boolean estVide() {
@@ -20,7 +20,7 @@ public class Sabot implements Iterable<Cartes> {
 
 	}
 
-	public void ajouterCarte(Cartes carte) {
+	public void ajouterCarte(Carte carte) {
 		if (nbCartes < tabCartes.length) {
 			tabCartes[nbCartes] = carte;
 			nbCartes++;
@@ -30,14 +30,14 @@ public class Sabot implements Iterable<Cartes> {
 		}
 	}
 
-	public void ajouterFamilleCarte(Cartes carte) {
+	public void ajouterFamilleCarte(Carte carte) {
 		for (int i = 0; i < carte.getNombre(); i++) {
 			ajouterCarte(carte);
 		}
 	}
 
-	public void ajouterFamilleCarte(Cartes... cartes) {
-		for (Cartes carte : cartes) {
+	public void ajouterFamilleCarte(Carte... cartes) {
+		for (Carte carte : cartes) {
 			for (int i = 0; i < carte.getNombre(); i++) {
 				ajouterCarte(carte);
 			}
@@ -45,18 +45,18 @@ public class Sabot implements Iterable<Cartes> {
 	}
 
 	@Override
-	public Iterator<Cartes> iterator() {
+	public Iterator<Carte> iterator() {
 		return new Iterateur();
 	}
 
-	public Cartes piocher() {
-		Iterator<Cartes> ite = iterator();
-		Cartes c = ite.next();
+	public Carte piocher() {
+		Iterator<Carte> ite = iterator();
+		Carte c = ite.next();
 		ite.remove();
 		return c;
 	}
 
-	private class Iterateur implements Iterator<Cartes> {
+	private class Iterateur implements Iterator<Carte> {
 		private int indiceIterateur = 0;
 		private int nombreOperationsReference = nombreOperations;
 		private boolean nextEffectue = false;
@@ -65,10 +65,10 @@ public class Sabot implements Iterable<Cartes> {
 			return indiceIterateur < nbCartes;
 		}
 
-		public Cartes next() {
+		public Carte next() {
 			verificationConcurrence();
 			if (hasNext()) {
-				Cartes carte = tabCartes[indiceIterateur];
+				Carte carte = tabCartes[indiceIterateur];
 				indiceIterateur++;
 				nextEffectue = true;
 				return carte;

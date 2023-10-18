@@ -6,7 +6,7 @@ import java.util.List;
 import cartes.Probleme.Type;
 
 public class JeuDeCartes {
-	private Cartes[] typesDeCartes = new Cartes[] {
+	private Carte[] typesDeCartes = new Carte[] {
 			new Botte(1,Type.ACCIDENT),
 			new Botte(1,Type.FEU),
 			new Botte(1,Type.CREVAISON),
@@ -32,11 +32,22 @@ public class JeuDeCartes {
 			new DebutLimite(4)
 	};
 	
-	private List<Cartes> listCartes = new ArrayList<>();
+	
+	
+	public List<Carte> getListCartes() {
+		return listCartes;
+	}
+
+
+
+
+
+
+	private List<Carte> listCartes = new ArrayList<>();
 	
 	public JeuDeCartes() {
 		
-		for(Cartes cartes : typesDeCartes) {
+		for(Carte cartes : typesDeCartes) {
 			for (int i = 0; i < cartes.getNombre(); i++) {
 				listCartes.add(cartes);
 			}
@@ -46,9 +57,9 @@ public class JeuDeCartes {
 	}
 	
 	
-	private int CountCartes(Cartes cartes){
+	private int CountCartes(Carte cartes){
 		int count = 0;
-		for (Cartes carteList : listCartes) {
+		for (Carte carteList : listCartes) {
 			if(cartes.equals(carteList)) {
 				count++;
 			}
@@ -60,7 +71,7 @@ public class JeuDeCartes {
 	
 	public boolean checkCount() {
 		
-		for (Cartes cartes : typesDeCartes) {
+		for (Carte cartes : typesDeCartes) {
 			if(cartes.getNombre() != CountCartes(cartes)) {
 				return false;
 			}

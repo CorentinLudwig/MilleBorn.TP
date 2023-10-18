@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import cartes.Attack;
 import cartes.Botte;
-import cartes.Cartes;
+import cartes.Carte;
 import cartes.Parade;
 import cartes.Probleme.Type;
 import jeu.Sabot;
@@ -28,7 +28,7 @@ public class Testsabot {
 		
 		
 		
-		for(Iterator<Cartes> ite = sab.iterator();ite.hasNext();) {
+		for(Iterator<Carte> ite = sab.iterator();ite.hasNext();) {
 			System.out.println(ite.next());
 			ite.remove();
 		}
