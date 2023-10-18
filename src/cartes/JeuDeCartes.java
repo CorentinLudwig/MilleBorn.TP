@@ -37,18 +37,36 @@ public class JeuDeCartes {
 	public JeuDeCartes() {
 		
 		for(Cartes cartes : typesDeCartes) {
-			
+			for (int i = 0; i < cartes.getNombre(); i++) {
+				listCartes.add(cartes);
+			}
 		}
 
 
 	}
 	
-//	
-//	
-//	public boolean checkCount() {
-//		
-//	}
 	
+	private int CountCartes(Cartes cartes){
+		int count = 0;
+		for (Cartes carteList : listCartes) {
+			if(cartes.equals(carteList)) {
+				count++;
+			}
+		}
+		
+		return count;
+	}
+
+	
+	public boolean checkCount() {
+		
+		for (Cartes cartes : typesDeCartes) {
+			if(cartes.getNombre() != CountCartes(cartes)) {
+				return false;
+			}
+		}
+		return true;	
+	}
 	
 	
 	
@@ -58,9 +76,11 @@ public class JeuDeCartes {
 	public static void main(String[] args) {
 		JeuDeCartes jeu = new JeuDeCartes();
 		
-		for (int i = 0; i < jeu.typesDeCartes.length; i++) {
-			System.out.println(jeu.typesDeCartes[i]);
+		for (int i = 0; i < jeu.listCartes.size(); i++) {
+			System.out.println(jeu.listCartes.get(i));
 		}
+		
+		System.out.println(jeu.checkCount());
 		
 	}
 }
