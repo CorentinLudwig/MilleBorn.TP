@@ -62,13 +62,13 @@ public class Utils {
 		return false;
 	}
 
-	static public <T> boolean verifierRassemblement(List<T> list) {
+	static public <T> boolean verifierRassemblement(List<T> list) {  // TODO changer les noms
 		T p = list.get(0);
 		T c;
 		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
 			c = (T) iterator.next();
 			if (!c.equals(p)) {
-				if (hasElements(list, p, list.indexOf(p))) {
+				if (hasElements(list, p, list.indexOf(c))) {
 					return false;
 
 				}
