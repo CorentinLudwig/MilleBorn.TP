@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import cartes.Probleme.Type;
+import utils.Utils;
 
 public class JeuDeCartes {
 	private Carte[] typesDeCartes = new Carte[] {
@@ -52,6 +53,8 @@ public class JeuDeCartes {
 				listCartes.add(cartes);
 			}
 		}
+		
+		listCartes = Utils.melanger(listCartes);
 
 
 	}
@@ -84,14 +87,5 @@ public class JeuDeCartes {
 	
 	
 	
-	public static void main(String[] args) {
-		JeuDeCartes jeu = new JeuDeCartes();
-		
-		for (int i = 0; i < jeu.listCartes.size(); i++) {
-			System.out.println(jeu.listCartes.get(i));
-		}
-		
-		System.out.println(jeu.checkCount());
-		
-	}
+
 }

@@ -62,18 +62,18 @@ public class Utils {
 		return false;
 	}
 
-	static public <T> boolean verifierRassemblement(List<T> list) {  // TODO changer les noms
-		T p = list.get(0);
-		T c;
+	static public <T> boolean verifierRassemblement(List<T> list) {
+		T precendent = list.get(0);
+		T current;
 		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
-			c = (T) iterator.next();
-			if (!c.equals(p)) {
-				if (hasElements(list, p, list.indexOf(c))) {
+			current = (T) iterator.next();
+			if (!current.equals(precendent)) {
+				if (hasElements(list, precendent, list.indexOf(current))) {
 					return false;
 
 				}
 			}
-			p = c;
+			precendent = current;
 		}
 
 		return true;
