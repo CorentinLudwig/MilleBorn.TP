@@ -11,12 +11,12 @@ public class Utils {
 
 	private static Random rng = new Random();
 
-	static public <T> T extraire(List<T> list) { // @to do extraire with iterator
+	 public static <T> T extraire(List<T> list) { // @to do extraire with iterator
 		int rand = rng.nextInt(list.size());
 		return list.remove(rand);
 	}
 
-	static public <T> List<T> melanger(List<T> list) {
+	 public static <T> List<T> melanger(List<T> list) {
 		List<T> listRetour = new ArrayList<>();
 
 		while (!list.isEmpty()) {
@@ -25,7 +25,7 @@ public class Utils {
 		return listRetour;
 	}
 
-	static public <T> boolean verifierMelange(List<T> list1, List<T> list2) {
+	 public static <T> boolean verifierMelange(List<T> list1, List<T> list2) {
 		if (list1.size() != list2.size())
 			return false;
 		for (T t : list1) {
@@ -37,7 +37,7 @@ public class Utils {
 		return true;
 	}
 
-	static public <T> List<T> rassembler(List<T> list) {
+	 public static <T> List<T> rassembler(List<T> list) {
 		List<T> listRetour = new ArrayList<>();
 
 		for (T t : list) {
@@ -52,9 +52,9 @@ public class Utils {
 		return listRetour;
 	}
 
-	static private <T> boolean hasElements(List<T> list, T cur, int indice) {
+	 private static <T> boolean hasElements(List<T> list, T cur, int indice) {
 		for (ListIterator<T> iterator2 = list.listIterator(indice); iterator2.hasNext();) {
-			T t = (T) iterator2.next();
+			T t = iterator2.next();
 			if (t.equals(cur)) {
 				return true;
 			}
@@ -62,11 +62,11 @@ public class Utils {
 		return false;
 	}
 
-	static public <T> boolean verifierRassemblement(List<T> list) {
+	 public static <T> boolean verifierRassemblement(List<T> list) {
 		T precendent = list.get(0);
 		T current;
 		for (Iterator<T> iterator = list.iterator(); iterator.hasNext();) {
-			current = (T) iterator.next();
+			current = iterator.next();
 			if (!current.equals(precendent)) {
 				if (hasElements(list, precendent, list.indexOf(current))) {
 					return false;

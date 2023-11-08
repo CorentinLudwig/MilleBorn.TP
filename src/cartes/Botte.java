@@ -30,8 +30,7 @@ public class Botte extends Probleme {
 	
 	@Override
 	public boolean equals(Object obj) {
-		if(obj instanceof Botte) {
-			Botte at = (Botte) obj;
+		if(obj instanceof Botte at) {
 			return at.getType() == this.getType();
 		}
 		return false;

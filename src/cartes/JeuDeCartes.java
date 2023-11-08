@@ -60,7 +60,7 @@ public class JeuDeCartes {
 	}
 	
 	
-	private int CountCartes(Carte cartes){
+	private int countCartes(Carte cartes){
 		int count = 0;
 		for (Carte carteList : listCartes) {
 			if(cartes.equals(carteList)) {
@@ -75,7 +75,7 @@ public class JeuDeCartes {
 	public boolean checkCount() {
 		
 		for (Carte cartes : typesDeCartes) {
-			if(cartes.getNombre() != CountCartes(cartes)) {
+			if(cartes.getNombre() != countCartes(cartes)) {
 				return false;
 			}
 		}
