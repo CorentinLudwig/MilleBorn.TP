@@ -29,6 +29,11 @@ public class Botte extends Probleme {
 	}
 	
 	@Override
+	public int hashCode() {
+		return 31*getType().hashCode();
+	}
+	
+	@Override
 	public boolean equals(Object obj) {
 		if(obj instanceof Botte at) {
 			return at.getType() == this.getType();

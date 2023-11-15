@@ -5,12 +5,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import cartes.Attack;
 import cartes.Bataille;
 import cartes.Borne;
 import cartes.Botte;
 import cartes.Carte;
 import cartes.FinLimite;
 import cartes.Limite;
+import cartes.Parade;
 import cartes.Probleme.Type;
 
 public class Joueur {
@@ -63,6 +65,11 @@ public class Joueur {
 	}
 	
 		
+	@Override
+	public int hashCode() {
+		
+		return 31*getNom().hashCode();
+	}
 		
 	@Override
 	public String toString() {
@@ -80,6 +87,7 @@ public class Joueur {
 			return null;
 		}
 		Carte carte = sabot.get(0);
+		sabot.remove(carte);
 		donner(carte);
 		return carte;
 	}
@@ -114,23 +122,74 @@ public class Joueur {
 		
 	}
 		
-		
-	public static void main(String[] args) {
-		Joueur joueur = new Joueur("bob");
-		List<Carte> sabot = new ArrayList<>();
-		
-		joueur.prendreCarte(sabot);
+
+	public boolean estBloque() {
+		boolean estPrioritaire = bottes.contains(new Botte(1, Type.FEU));
+		if(pileBataille.isEmpty()) {
+			return estPrioritaire;
+		}
+		Bataille sommet = pileBataille.get(pileBataille.size()-1);
+		if(sommet instanceof Parade parade && (estPrioritaire || parade.getType()==Type.FEU)) {
+			return false;
+		}
+		if(sommet instanceof Attack attack && bottes.contains(new Botte(1, attack.getType()))) {
+			return false;
+		}
+		return true;
 	}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	
+	public Set<Coup> coupsPossibles(List<Joueur> participants){
+		Set<Coup> listCoup = new HashSet<>();
+		
+		for (Joueur joueur : participants) {
+			for (Carte carte : main) {
+				Coup coup = new Coup(carte, joueur);
+				if(coup.estValide(this))
+					listCoup.add(coup);
+			}
+		}
+		
+		return listCoup;
+	}
+	
+	
+	public Set<Coup> coupsParDefault(){
+		Set<Coup> listCoup = new HashSet<>();
+		
+			for (Carte carte : main) {
+				Coup coup = new Coup(carte, null);
+				if(coup.estValide(this))
+					listCoup.add(coup);
+			}
+		
+		return listCoup;
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
