@@ -1,5 +1,7 @@
 package cartes;
 
+import jeu.Joueur;
+
 public class Botte extends Probleme {
 
 	public Botte(int nombre, Type type) {
@@ -39,5 +41,12 @@ public class Botte extends Probleme {
 			return at.getType() == this.getType();
 		}
 		return false;
+	}
+
+	@Override
+	public boolean appliquer(Joueur j) {
+		j.getBottes().add(this);
+		
+		return true;
 	}
 }

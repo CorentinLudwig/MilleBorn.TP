@@ -1,5 +1,7 @@
 package cartes;
 
+import jeu.Joueur;
+
 public class Attack extends Bataille {
 
 	public Attack(int nombre, Type type) {
@@ -34,6 +36,7 @@ public class Attack extends Bataille {
 		}
 		return false;
 	}
+
 	
 	
 }

@@ -1,5 +1,7 @@
 package cartes;
 
+import jeu.Joueur;
+
 public abstract class Carte {
 	private int nombre;
 
@@ -16,5 +18,5 @@ public abstract class Carte {
 		this.nombre = nombre;
 	}
 
-	
+	public abstract boolean appliquer(Joueur j);
 }

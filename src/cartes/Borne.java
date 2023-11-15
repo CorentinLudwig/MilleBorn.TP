@@ -1,5 +1,7 @@
 package cartes;
 
+import jeu.Joueur;
+
 public class Borne extends Carte {
 	private int km;
 
@@ -31,6 +33,15 @@ public class Borne extends Carte {
 		if(obj instanceof Borne) {
 			Borne at = (Borne) obj;
 			return at.getKm() == this.getKm();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean appliquer(Joueur j) {
+		if(!j.estBloque() && j.getLimite()>this.getKm() && j.getKM()+getKm()<=1000) {
+			j.getPileBorne().add(this);
+			return true;
 		}
 		return false;
 	}
